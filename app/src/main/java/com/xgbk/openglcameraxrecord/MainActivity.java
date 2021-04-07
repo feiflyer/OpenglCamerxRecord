@@ -2,8 +2,11 @@ package com.xgbk.openglcameraxrecord;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.camera2.Camera2Config;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.Preview;
+import androidx.camera.core.impl.MutableOptionsBundle;
+import androidx.camera.core.impl.PreviewConfig;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
@@ -24,7 +27,7 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
 
-    private PreviewView camera_preview;
+    private GLCameraView camera_preview;
 
     static {
         System.loadLibrary("native-lib");
@@ -70,13 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     ProcessCameraProvider cameraProvider = processCameraProvider.get();
-
                     Preview preview = new Preview.Builder()
                             .build();
-                    preview.setSurfaceProvider(camera_preview.getSurfaceProvider());
-
+                    camera_preview.attachPreview(preview);
                     cameraProvider.unbindAll();
-                    cameraProvider.bindToLifecycle(MainActivity.this, CameraSelector.DEFAULT_FRONT_CAMERA,preview);
+                    cameraProvider.bindToLifecycle(MainActivity.this, CameraSelector.DEFAULT_BACK_CAMERA,preview);
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
