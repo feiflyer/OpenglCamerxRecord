@@ -73,6 +73,12 @@ public class OpenGLUtils {
     }
 
 
+    /**
+     * 价值着色器并编译成GPU程序
+     * @param vSource
+     * @param fSource
+     * @return
+     */
     public static int loadProgram(String vSource, String fSource){
         /**
          * 顶点着色器

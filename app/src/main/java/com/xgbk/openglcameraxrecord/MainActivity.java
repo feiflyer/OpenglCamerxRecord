@@ -18,6 +18,7 @@ import android.os.Bundle;
 
 import android.widget.Toast;
 
+import com.camera.opencv.OpencvUtils;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(
                     this, new String[]{Manifest.permission.CAMERA}, 100);
         }
+
+        Toast.makeText(this,OpencvUtils.getOpencvVersion(),Toast.LENGTH_LONG).show();
     }
 
 

@@ -6,7 +6,6 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
-import android.opengl.Matrix;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Surface;
@@ -82,6 +81,8 @@ public class GLCameraView extends GLSurfaceView implements GLSurfaceView.Rendere
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         int[] ids = new int[1];
+
+        // OpenGL相关
         GLES20.glGenTextures(1, ids, 0);
         textureId = ids[0];
         surfaceTexture = new SurfaceTexture(textureId);
